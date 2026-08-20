@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.runbuddy">
+
+    <!-- 인터넷 + 위치 권한 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+
+    <!-- 광고 ID 제거 -->
+    <uses-permission
+        android:name="com.google.android.gms.permission.AD_ID"
+        tools:node="remove" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="RunBuddy"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.RunBuddy"
+        android:usesCleartextTraffic="true">
+
+        <!-- Google Maps API Key -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+
+        <!-- 러닝 서비스 -->
+        <service
+            android:name=".service.RunningService"
+            android:exported="false"
+            android:foregroundServiceType="location" />
+
+        <!-- ⭐ 앱 시작 화면(MainActivity로 다시 복구됨) -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 로그인 & 회원가입 -->
+        <activity android:name=".login.LoginActivity" android:exported="false" />
+        <activity android:name=".ui.signup.SignUpActivity" android:exported="false" />
+
+        <!-- 홈 -->
+        <activity android:name=".home.HomeActivity" android:exported="false" />
+
+        <!-- 지도 -->
+        <activity android:name=".map.MapActivity" android:exported="false" />
+
+        <!-- 러닝 기록 -->
+        <activity android:name=".ui.record.RecordActivity" android:exported="false" />
+        <activity android:name=".ui.record.RecordDetailActivity" android:exported="false" />
+
+        <!-- 러닝 -->
+        <activity android:name=".ui.ready.ReadySetGoActivity" android:exported="false" />
+        <activity android:name=".ui.running.RunningActivity" android:exported="false" />
+
+        <!-- AI Chat -->
+        <activity android:name=".ui.ai.AiChatActivity" android:exported="false" />
+
+        <!-- 프로필 -->
+        <activity android:name=".ui.profile.ProfileActivity" android:exported="false" />
+
+    </application>
+
+</manifest>

@@ -1,0 +1,7 @@
+sdk.dir=/path/to/Android/Sdk
+
+# Google Maps SDK for Android key (Android app-restricted)
+MAPS_API_KEY=your_maps_api_key_here
+
+# Directions/Geocoding API key (server key)
+DIRECTIONS_API_KEY=your_directions_api_key_here

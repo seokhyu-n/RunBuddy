@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="#FFFFFF">
+
+    <!-- 지난주 -->
+    <TextView
+        android:id="@+id/tvLastWeek"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="지난 주"
+        android:textSize="22sp"
+        android:padding="12dp"
+        android:textColor="@android:color/darker_gray" />
+
+    <!-- 이번주 -->
+    <TextView
+        android:id="@+id/tvThisWeek"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="이번 주"
+        android:textSize="22sp"
+        android:padding="12dp"
+        android:textColor="@android:color/black" />
+
+    <!-- 선택 버튼 -->
+    <Button
+        android:id="@+id/btnSelectWeek"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="선택"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        android:background="@android:color/black"
+        android:layout_marginTop="20dp" />
+
+</LinearLayout>

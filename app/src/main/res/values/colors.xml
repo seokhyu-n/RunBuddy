@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 💚 브랜드 메인 컬러 (활기찬 민트 톤) -->
+    <color name="colorPrimary">#00C6A9</color>
+
+    <!-- 💙 보조 포인트 컬러 (딥 블루) -->
+    <color name="colorPrimaryDark">#004D61</color>
+
+    <!-- 🩵 포인트/버튼 강조 색상 -->
+    <color name="colorAccent">#4FD3C4</color>
+
+    <!-- ⚪ 배경색 (밝고 깨끗하게) -->
+    <color name="colorBackground">#F9F9F9</color>
+
+    <!-- ⚫ 글자색 기본 (어두운 톤) -->
+    <color name="colorTextPrimary">#212121</color>
+
+    <!-- 🔘 버튼용 흰색 텍스트 -->
+    <color name="colorOnPrimary">#FFFFFF</color>
+
+    <!-- 💬 오류/경고용 컬러 -->
+    <color name="colorError">#E53935</color>
+</resources>

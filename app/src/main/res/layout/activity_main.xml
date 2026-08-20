@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="#FFF9FB">
+
+    <!-- 로고 -->
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginBottom="24dp"
+        app:srcCompat="@drawable/remove_background"
+        android:contentDescription="@string/app_name" />
+
+    <!-- 로그인 버튼 -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnGoLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="로그인"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        app:backgroundTint="@color/colorPrimary"
+        app:cornerRadius="12dp"
+        android:layout_marginBottom="12dp" />
+
+    <!-- 회원가입 버튼 -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnGoSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="회원가입 하기"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        app:backgroundTint="?attr/colorPrimary"
+        app:cornerRadius="12dp" />
+
+</LinearLayout>

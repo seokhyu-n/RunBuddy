@@ -1,0 +1,17 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="80dp"
+    android:height="80dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <!-- 바깥 동그라미 -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M50,5
+            A45,45 0 1,1 49.9,5z" />
+
+    <!-- 가운데 사각형 STOP 모양 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M35,35 h30 v30 h-30z"/>
+</vector>

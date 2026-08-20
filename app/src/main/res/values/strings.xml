@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">RunBuddy</string>
+
+    <!-- google_maps_key / Server_Directions_Key는 build.gradle.kts의 resValue로 주입됨 (local.properties 참고) -->
+</resources>

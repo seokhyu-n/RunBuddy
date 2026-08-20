@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeActivity">
+
+    <!-- ⭐ 메인 화면 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- ⭐ 햄버거 메뉴 버튼 -->
+        <ImageView
+            android:id="@+id/btnMenu"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:padding="6dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_menu" />
+
+        <!-- 🔼 스크롤 콘텐츠 -->
+        <ScrollView
+            android:id="@+id/homeScroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottomButtons"
+            android:layout_marginTop="60dp"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <!-- 로고 -->
+                <ImageView
+                    android:id="@+id/imgLogo"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="8dp"
+                    android:src="@drawable/remove_background" />
+
+                <!-- 환영 문구 -->
+                <TextView
+                    android:id="@+id/tvWelcome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="주영님, 오늘도 달려볼까요?"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#333333"
+                    android:layout_marginBottom="30dp" />
+
+                <!-- ⭐ GIF/ProgressBar/오늘 km 텍스트 모두 삭제됨 -->
+                <!-- 바로 “내 활동” 카드로 이어짐 -->
+
+                <LinearLayout
+                    android:id="@+id/layoutMyActivity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_card_bd"
+                    android:elevation="4dp"
+                    android:padding="20dp"
+                    android:orientation="vertical"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="24dp">
+
+                    <TextView
+                        android:id="@+id/tvTodayTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="내 활동"
+                        android:textSize="30sp"
+                        android:textStyle="bold"
+                        android:textColor="#333333"
+                        android:layout_marginBottom="12dp" />
+
+                    <TextView
+                        android:id="@+id/tvTodayDesc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="목표를 향해 달려온 발자취를 확인해보세요"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#979595"
+                        android:layout_marginBottom="12dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- 하단 버튼 묶음 -->
+        <RelativeLayout
+            android:id="@+id/bottomButtons"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_alignParentBottom="true">
+
+            <!-- AI -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAiSmall"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="40dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/btn_circle_small"
+                android:text="AI"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                app:cornerRadius="35dp"/>
+
+            <!-- START -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnStartRunCircle"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/btn_circle_start"
+                android:text="START"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                app:cornerRadius="60dp" />
+
+            <!-- MAP -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnMapSmall"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="40dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/btn_circle_small"
+                android:text="MAP"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                app:cornerRadius="35dp"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <!-- ⭐ 왼쪽 사이드 메뉴 -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navView"
+        android:layout_width="260dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#FFFFFF"
+        app:menu="@menu/menu_sidebar"/>
+
+</androidx.drawerlayout.widget.DrawerLayout>

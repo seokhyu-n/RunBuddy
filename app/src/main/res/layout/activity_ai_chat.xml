@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <!-- 채팅 목록 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvChat"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/layoutInput"
+        android:padding="12dp" />
+
+    <!-- 🔥 하단 입력창 (id 추가!!) -->
+    <LinearLayout
+        android:id="@+id/layoutInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:background="#FFFFFF">
+
+        <EditText
+            android:id="@+id/etMessage"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:padding="12dp"
+            android:background="@android:color/white"
+            android:hint="러닝 코치에게 물어보세요"
+            android:textColor="#000000"
+            android:textColorHint="#999999" />
+
+        <Button
+            android:id="@+id/btnSend"
+            android:layout_width="70dp"
+            android:layout_height="48dp"
+            android:background="#00C6A9"
+            android:text="전송"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:layout_marginLeft="8dp" />
+    </LinearLayout>
+
+</RelativeLayout>

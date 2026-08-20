@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- 🌙 앱 전체 테마 -->
+    <style name="Theme.RunBuddy" parent="Theme.Material3.DayNight.NoActionBar">
+
+        <!-- Android 12 기본 스플래시 제거 -->
+        <item name="android:windowSplashScreenAnimatedIcon">@null</item>
+        <item name="android:windowSplashScreenBackground">@android:color/white</item>
+
+        <!-- 기본 색상 -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+
+        <!-- 상태바/네비바 색상 -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
+        <item name="android:navigationBarColor" tools:targetApi="l">?attr/colorPrimary</item>
+
+        <!-- 기본 버튼 스타일 -->
+        <item name="materialButtonStyle">@style/RunBuddyButton</item>
+    </style>
+
+    <!-- 버튼 모서리 둥근 정도 -->
+    <style name="ShapeAppearance.RunBuddy.Corner12" parent="ShapeAppearance.Material3.Corner.Medium">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
+</resources>

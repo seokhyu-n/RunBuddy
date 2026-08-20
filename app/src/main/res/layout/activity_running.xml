@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <!-- ================= 상단 페이스 / 평균페이스 / 시간 ================= -->
+    <LinearLayout
+        android:id="@+id/topInfo"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="20dp"
+        android:weightSum="3">
+
+        <!-- 페이스 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tvPace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--'--&quot;"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="페이스"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- 평균 페이스 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tvAvgPace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--'--&quot;"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="평균 페이스"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- 시간 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <Chronometer
+                android:id="@+id/chronometer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0:00"
+                android:textSize="32sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="시간"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- ================= 🔥 칼로리 / 고도 (상단 바로 아래) ================= -->
+    <LinearLayout
+        android:id="@+id/topCaloriesAltitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topInfo"
+        android:layout_marginTop="6dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="2">
+
+        <!-- 칼로리 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tvCalories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="#000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="칼로리"
+                android:textSize="14sp"
+                android:textColor="#555" />
+        </LinearLayout>
+
+        <!-- 고도 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tvAltitude"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0m"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="#000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="고도"
+                android:textSize="14sp"
+                android:textColor="#555" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- ================= 거리 표시 ================= -->
+    <TextView
+        android:id="@+id/tvDistance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0.00"
+        android:textSize="130sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="#000"
+        android:layout_marginTop="200dp" />
+
+    <TextView
+        android:id="@+id/tvKmLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvDistance"
+        android:text="킬로미터"
+        android:textSize="22sp"
+        android:gravity="center"
+        android:textColor="#654" />
+
+    <!-- ================= 버튼 영역 ================= -->
+    <LinearLayout
+        android:id="@+id/btnRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btnMap"
+        android:layout_marginBottom="40dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingHorizontal="40dp">
+
+        <ImageButton
+            android:id="@+id/btnStop"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_stop"
+            android:background="@android:color/transparent" />
+
+        <FrameLayout
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/btnPause"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_pause"
+                android:background="@android:color/transparent" />
+
+            <ImageButton
+                android:id="@+id/btnResume"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_play"
+                android:background="@android:color/transparent"
+                android:visibility="gone" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <!-- ================= 종료 메시지 ================= -->
+    <TextView
+        android:id="@+id/tvFinishMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btnRow"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:text="운동이 종료되었습니다."
+        android:textSize="22sp"
+        android:textColor="#FFFFFF"
+        android:background="#66000000"
+        android:padding="16dp"
+        android:visibility="gone" />
+
+    <!-- ================= 지도 보기 버튼 ================= -->
+    <Button
+        android:id="@+id/btnMap"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:text="지도 보기"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:background="#FFFFFF"
+        android:textColor="#222222"
+        android:elevation="10dp" />
+
+</RelativeLayout>
