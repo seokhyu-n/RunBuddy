@@ -1,8 +1,9 @@
 # 🏃‍♂️ RunBuddy  
-실시간 러닝 트래킹 & 기록 관리 안드로이드 앱
+실시간 러닝 트래킹 & AI 러닝 코치 안드로이드 앱
 
 RunBuddy는 러닝 중 **거리, 페이스, 평균 페이스, 시간, 칼로리, 고도**를 실시간으로 측정하고  
-러닝 종료 후 **지도 기반 경로 시각화 및 기록 저장**까지 지원하는 안드로이드 러닝 트래킹 앱입니다.
+러닝 종료 후 **지도 기반 경로 시각화 및 기록 저장**까지 지원하는 안드로이드 러닝 트래킹 앱입니다.  
+또한 **OpenAI API 기반 AI 러닝 코치**가 사용자가 원하는 장소와 스타일에 맞는 러닝 코스를 추천하고 지도에 표시합니다.
 
 ---
 
@@ -19,12 +20,22 @@ RunBuddy는 러닝 중 **거리, 페이스, 평균 페이스, 시간, 칼로리,
 
 ---
 
+### 🤖 AI 러닝 코치 (코스 추천)
+- 메인 화면의 **AI 버튼**으로 채팅 화면 진입
+- 사용자가 원하는 러닝 장소나 스타일을 자연어로 요청
+  - 예: "평택대학교 정문에서 평택역까지 뛰는 러닝 코스 추천 후 지도에 표시해줘"
+- AI가 **출발점·도착점과 단계별 경로 설명**을 응답
+- 추천된 코스를 **Google Maps 위에 경로로 표시**
+- 기존 러닝 앱(런데이, NRC, Strava)에는 없는 대화형 코스 추천 기능으로 차별화
+
+---
+
 ### 🔥 칼로리 계산
 - MET(Metabolic Equivalent of Task) 기반 추정 방식
 - 사용자 체중(기본값 70kg) 기준 계산
 - 시간 경과에 따라 실시간 누적
 
-**사용 공식**
+**사용 공식**  
 kcal = MET × 3.5 × 체중(kg) / 200 × 운동시간(분)
 
 ---
@@ -85,8 +96,47 @@ kcal = MET × 3.5 × 체중(kg) / 200 × 운동시간(분)
 
 ---
 
+## 🧠 AI 서버 구축 및 배포
+
+AI 코스 추천 기능은 앱에서 OpenAI API를 직접 호출하지 않고, **별도의 AI 서버를 거쳐 호출**하도록 구성했습니다.
+
+### 🏗 구조
+
+```
+[Android 앱 (AI 채팅 화면)]
+        │  사용자 요청 (장소·스타일)
+        ▼
+[RunBuddy AI 서버 (Node.js, Render 배포)]
+        │  OpenAI API 호출
+        ▼
+[OpenAI API]
+        │  출발점·도착점·경로 설명 응답
+        ▼
+[Android 앱] → 채팅 화면에 응답 표시 → Google Maps에 추천 코스 표시
+```
+
+### 🔐 API 키 보안
+- OpenAI API 키와 포트 번호를 서버의 **환경 변수(.env)** 로 관리
+- `.env`는 `.gitignore`로 저장소에서 제외
+- 앱(APK)에는 API 키를 포함하지 않아, 앱을 분석해도 키가 노출되지 않도록 설계
+
+### 💰 사용량·비용 관리
+- OpenAI 대시보드에서 **월간 예산 한도** 설정
+- 사용량 **80% / 100% 도달 시 알림**을 받도록 설정해 예상치 못한 과금 방지
+
+### 🚀 서버 배포 (Render)
+- AI 서버 코드를 별도 GitHub 저장소(`runbuddy-ai-server`)로 관리해 팀원 간 버전 관리와 협업
+- GitHub 저장소를 **Render Web Service**에 연결해 실제 웹 서버로 배포·운영
+- 무료 인스턴스는 일정 시간 요청이 없으면 절전 상태가 되어 첫 요청이 늦어질 수 있음 (향후 개선 과제)
+
+### 👤 사용자 데이터
+- 사용자 정보(이메일·이름·목표 거리)를 **Firebase Cloud Firestore**에 저장
+
+---
+
 ## 🧩 프로젝트 구조
 
+```
 com.example.runbuddy
 │
 ├─ ui
@@ -97,23 +147,23 @@ com.example.runbuddy
 │ │ ├─ RecordDetailActivity.kt
 │ │ └─ RecordListAdapter.kt
 │ └─ map
-│ └─ MapActivity.kt
+│   └─ MapActivity.kt
 │
 ├─ data
 │ ├─ running
 │ │ └─ RunningRepository.kt
 │ └─ record
-│ ├─ Record.kt
-│ └─ RecordRepository.kt
+│   ├─ Record.kt
+│   └─ RecordRepository.kt
 │
 ├─ service
 │ └─ RunningService.kt
 │
 └─ res
-├─ layout
-├─ drawable
-└─ values
-
+  ├─ layout
+  ├─ drawable
+  └─ values
+```
 
 ---
 
@@ -122,13 +172,15 @@ com.example.runbuddy
 | 구분 | 기술 |
 |---|---|
 | 언어 | Kotlin |
-| UI | XML Layout |
+| UI | XML Layout, Material Design 3, Lottie Animation |
 | 지도 | Google Maps SDK |
 | 위치 | FusedLocationProviderClient |
 | 백그라운드 | Foreground Service |
 | 아키텍처 | Repository 패턴 |
-| 상태 관리 | LiveData |
-| 데이터 저장 | SharedPreferences |
+| 상태 관리 | ViewModel, LiveData |
+| 데이터 저장 | SharedPreferences, Firebase Cloud Firestore |
+| AI | OpenAI API |
+| AI 서버 | Node.js, Render |
 | 음성 안내 | TextToSpeech |
 | 이미지 처리 | Canvas / Bitmap |
 | 권한 관리 | Runtime Permission |
@@ -172,7 +224,8 @@ com.example.runbuddy
 4. 위치 권한 허용
 5. 실제 기기에서 실행 (GPS 필수)
 
-> 보안을 위해 API 키와 `google-services.json`은 저장소에 포함되어 있지 않습니다.
+> 보안을 위해 API 키와 `google-services.json`은 저장소에 포함되어 있지 않습니다.  
+> AI 코스 추천 기능은 별도로 배포된 RunBuddy AI 서버가 실행 중이어야 동작합니다.
 
 ---
 
@@ -181,6 +234,9 @@ com.example.runbuddy
 ```xml
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+```
+
+---
 
 ## 📌 향후 개선 계획
 
@@ -188,6 +244,7 @@ com.example.runbuddy
 - 러닝 통계 그래프 시각화
 - 목표 거리 / 목표 시간 설정 기능
 - 클라우드 기반 러닝 기록 동기화
+- AI 서버 콜드 스타트 지연 개선
 - Wear OS 연동 지원
 
 ---
